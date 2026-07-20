@@ -1,0 +1,11 @@
+# general
+.idea/
+test/
+dist/
+node_modules/
+
+# ts build info
+tsconfig.tsbuildinfo
+
+# tarball
+*.tgz
