@@ -1,7 +1,7 @@
 import type { Awaitable, IncomingRequestContentType, IncomingRequestMethod } from "./types";
 import { Middleware } from "./Middleware";
 import { IncomingRequest } from "./IncomingRequest";
-import { parseRequestBodyByContentType } from "./utils";
+import { parseRequestBodyByContentType, searchParamsToObj } from "./utils";
 import { IncomingRequestUrl } from "./IncomingRequestUrl";
 
 export class Builder<
@@ -56,8 +56,8 @@ export class Builder<
                 url.host,
                 url.hostname,
                 url.pathname,
-                await context.params,
-                Object.fromEntries(url.searchParams.entries())
+                await context.params ?? {},
+                searchParamsToObj(url.searchParams)
             );
 
             let ir = new IncomingRequest(
