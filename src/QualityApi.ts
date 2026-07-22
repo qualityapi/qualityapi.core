@@ -1,6 +1,12 @@
 import { Middleware } from "./Middleware";
 import type { IncomingRequest } from "./IncomingRequest";
-import type { IncomingRequestContentType, IncomingRequestContentTypeMap, MiddlewareFunction } from "./types";
+import type {
+    DefaultHeaders,
+    DefaultParams, DefaultSearchParams,
+    IncomingRequestContentType,
+    IncomingRequestContentTypeMap,
+    MiddlewareFunction
+} from "./types";
 import { Builder } from "./Builder";
 
 namespace QualityApi {
@@ -22,9 +28,9 @@ namespace QualityApi {
 
     export function initBuilder<T extends IncomingRequestContentType | undefined | null>(contentType?: T) {
         return new Builder<
-            unknown,
-            unknown,
-            unknown,
+            DefaultParams,
+            DefaultSearchParams,
+            DefaultHeaders,
             T extends IncomingRequestContentType
                 ? IncomingRequestContentTypeMap[T]
                 : unknown
