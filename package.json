@@ -1,6 +1,6 @@
 {
     "name": "@qualityapi/core",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "",
     "homepage": "https://github.com/qualityapi/qualityapi.core#readme",
     "bugs": {
@@ -30,8 +30,9 @@
         "typescript": "^7.0.2"
     },
     "dependencies": {
-        "next": "^16",
-        "zod": "^4"
+        "next": "^16"
     },
-    "files": ["dist"]
+    "files": [
+        "dist"
+    ]
 }

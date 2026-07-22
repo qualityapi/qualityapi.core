@@ -10,7 +10,7 @@ export class IncomingRequest<
 
     private _url: IncomingRequestUrl = null!;
     public get url() {
-        return this._url;
+        return this._url as IncomingRequestUrl<Params, SearchParams>;
     }
 
     public transformUrl<P, SP>(
