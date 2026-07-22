@@ -29,10 +29,19 @@ export type DefaultSearchParams = Record<string, string | string[]>;
 export type DefaultHeaders = Record<string, string>;
 
 export type MiddlewareFunction<
-    InIR extends IncomingRequest,
-    Out extends IncomingRequest | unknown // Response
+    InParams,
+    InSearchParams,
+    InHeaders,
+    InBody,
+    OutParams,
+    OutSearchParams,
+    OutHeaders,
+    OutBody,
 > =
-    (ir: InIR) =>
-        IncomingRequest |
-        unknown // Response;
-// Out extends IncomingRequest ? IncomingRequest : null
+    (ir: IncomingRequest<InParams, InSearchParams, InHeaders, InBody>) =>
+        Awaitable<
+            IncomingRequest<OutParams, OutSearchParams, OutHeaders, OutBody> |
+            Response
+        >;
+
+export type Awaitable<T> = T | Promise<T>;

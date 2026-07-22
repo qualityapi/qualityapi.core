@@ -1,14 +1,14 @@
-import type { DefaultHeaders, DefaultParams, DefaultSearchParams, IncomingRequestMethod } from "./types";
+import type { IncomingRequestMethod } from "./types";
 import type { IncomingRequestUrl } from "./IncomingRequestUrl";
 
 export class IncomingRequest<
-    Params = DefaultParams,
-    SearchParams = DefaultSearchParams,
-    Headers = DefaultHeaders,
-    Body = unknown
+    Params,
+    SearchParams,
+    Headers,
+    Body
 > {
 
-    public _url: IncomingRequestUrl = null!;
+    private _url: IncomingRequestUrl = null!;
     public get url() {
         return this._url;
     }
@@ -33,22 +33,22 @@ export class IncomingRequest<
         return this._headers as Headers;
     }
 
-    public transformHeaders<T>(newHeaders: T): IncomingRequest<T, Body> {
+    public transformHeaders<T>(newHeaders: T): IncomingRequest<Params, SearchParams, T, Body> {
         this._headers = newHeaders;
 
-        return this as unknown as IncomingRequest<T, Body>;
+        return this as unknown as IncomingRequest<Params, SearchParams, T, Body>;
     }
 
 
-    private _body: any = {};
+    private _body: any = undefined;
     public get body() {
         return this._body as Body;
     }
 
-    public transformBody<T>(newBody: T): IncomingRequest<Headers, T> {
+    public transformBody<T>(newBody: T): IncomingRequest<Params, SearchParams, Headers, T> {
         this._body = newBody;
 
-        return this as unknown as IncomingRequest<Headers, T>;
+        return this as unknown as IncomingRequest<Params, SearchParams, Headers, T>;
     }
 
 
