@@ -30,8 +30,9 @@
         "typescript": "^7.0.2"
     },
     "dependencies": {
-        "next": "^16",
-        "zod": "^4"
+        "next": "^16"
     },
-    "files": ["dist"]
+    "files": [
+        "dist"
+    ]
 }
